@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Weather Underground -- SZ Demo</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">		
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>	
+		<script src="SzJs.js"></script>
+    </head>
+    <body>
+	<div data-ng-app="SzDemo" data-ng-controller="MapCtrl">
+        <div class="modal-overlay"></div>
+        <div class="modal">
+            <div class="close icon icon-close"></div>
+            <div class="container">
+                <div class="main content">
+                    <div id="webcam-weather">
+                        <h1><span data-ng-show= linktext>{{linktext}},</span> {{city}}, {{state}}</h1>
+                        <span class="sub-text">Last Updated on {{lastUpdated}}</span>
+                        <div class="widgets">
+                            <div class="webcam widget">
+                                <img src={{CURRENTIMAGEURL}} alt={{linktext}}>
+                            </div>
+                            <div class="conditions widget">
+                                <div class="row">
+                                    <div class="col-1 column">
+                                        <img src= {{condition.current_observation.icon_url}} alt= {{condition.current_observation.icon}} class="weather-icon">
+                                    </div>
+                                    <div class="col-2 column">
+                                        <h2>{{condition.current_observation.temp_f}} °F</h2>
+                                        <span class="sub-text">{{condition.current_observation.weather}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 column">Wind:</div>
+                                    <div class="col-2 column"><strong>{{condition.current_observation.wind_mph}} mph</strong> from the <strong>{{condition.current_observation.wind_dir}}</strong></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 column">Dew Point:</div>
+                                    <div class="col-2 column"><strong>{{condition.current_observation.dewpoint_f}}</strong> °F</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 column">Pressure:</div>
+                                    <div class="col-2 column"><strong>{{condition.current_observation.pressure_in}}</strong> in</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 column">Humidity:</div>
+                                    <div class="col-2 column"><strong>{{condition.current_observation.relative_humidity}}</strong></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 column">Visibility:</div>
+                                    <div class="col-2 column"><strong>{{condition.current_observation.visibility_mi}}</strong> miles</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widgets">
+                        <div id="map">
+                        </div>
+                    </div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
